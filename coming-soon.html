@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming soon | Hadley Music</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <nav id="top-nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="brand" href="/">Hadley Music</a>
+      <div class="nav-schools" aria-label="Performing schools">
+        <img class="nav-logo logo-hes" src="/assets/logos/hes.png" alt="Hadley Elementary School" decoding="async">
+        <img class="nav-logo logo-hopkins" src="/assets/logos/hopkins-seal.png" alt="Hopkins Academy" decoding="async">
+      </div>
+      <div class="nav-links">
+        <a href="/">Concerts</a>
+        <a href="/coming-soon.html?for=shop">Shop</a>
+        <a class="cta" href="/coming-soon.html?for=donate">Donate</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="coming-soon-wrap">
+      <div class="eyebrow" style="text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;color:var(--brass-d);margin-bottom:.75rem;">In the works</div>
+      <h1 id="cs-title">Coming soon</h1>
+      <p id="cs-body">We're getting this page ready. Check back shortly.</p>
+      <a class="btn btn-primary" href="/">← Back to concerts</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4>Hadley Media</h4>
+        <p>Concert footage is produced and owned by Hadley Media, the Town of Hadley's media branch. This site showcases their work with permission.</p>
+      </div>
+      <div>
+        <h4>Hadley Band Boosters</h4>
+        <p>Support for the band program flows through the <strong>Hadley Band Boosters</strong>, a 501(c)(3) nonprofit (EIN 81-2995612). All donations and merchandise are handled by the Boosters directly.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Light page-customization based on which link the user clicked.
+    // No framework, no module — just enough to make donate/shop feel distinct.
+    (function () {
+      const which = new URLSearchParams(location.search).get('for');
+      const titleEl = document.getElementById('cs-title');
+      const bodyEl  = document.getElementById('cs-body');
+      if (which === 'donate') {
+        document.title = 'Donate — coming soon | Hadley Music';
+        titleEl.textContent = 'Donate — coming soon';
+        bodyEl.innerHTML = "A direct link to the <strong>Hadley Band Boosters'</strong> donation page will live here. The Boosters are a 501(c)(3) nonprofit that funds instruments, sheet music, festival fees, and scholarships for the program.";
+      } else if (which === 'shop') {
+        document.title = 'Shop — coming soon | Hadley Music';
+        titleEl.textContent = 'Shop — coming soon';
+        bodyEl.innerHTML = "The Boosters' annual community calendar (and anything else they sell) will be linked here. Purchases go directly through the Boosters.";
+      }
+    })();
+  </script>
+</body>
+</html>

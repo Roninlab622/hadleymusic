@@ -1,0 +1,13 @@
+# Dev-only scratch — keep out of the deployed site.
+_recon/
+
+# Claude Code machine-local settings (don't commit)
+.claude/
+
+# OS / editor noise
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+.idea/
+.vscode/

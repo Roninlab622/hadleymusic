@@ -1,0 +1,4 @@
+# Cloudflare Pages — redirects + rewrites.
+# Phase 1 doesn't need any nice-URL rewrites; concert pages are loaded via
+# /concert.html?id=<video_id>. If we later want /concert/<id> shapes, this
+# file is where it would land.

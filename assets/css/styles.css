@@ -1,0 +1,514 @@
+/* Hadley Music — site styles
+   Single stylesheet for the whole site. Mobile-first, no framework. */
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; max-width: 100vw; }
+img { display: block; max-width: 100%; height: auto; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+a { color: var(--royal); text-decoration: none; }
+a:hover { color: var(--brass); }
+
+/* ── Tokens ── */
+:root {
+  --parchment:  #f8f3e7;
+  --parchment-d:#ebe4cf;
+  --hadley:     #2c4a6b;
+  --hadley-d:   #1f3650;
+  --royal:      #1f3fc8;
+  --brass:      #d4a14a;
+  --brass-d:    #b88532;
+  --ink:        #1f2933;
+  --muted:      #6b7280;
+  --border:     #d8cdb0;
+  --white:      #fffdf7;
+
+  --radius: 10px;
+  --shadow-sm: 0 1px 2px rgba(31, 41, 51, 0.06);
+  --shadow-md: 0 6px 24px rgba(31, 41, 51, 0.10);
+
+  --container: 1120px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--hadley-d);
+}
+
+/* ── Layout ── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ── Top nav ── */
+#top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--hadley);
+  color: var(--white);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+#top-nav .nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+#top-nav .brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+#top-nav .brand:hover { color: var(--brass); }
+#top-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+#top-nav .nav-links a {
+  color: rgba(255, 253, 247, 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+#top-nav .nav-links a:hover {
+  color: var(--white);
+  border-bottom-color: var(--brass);
+}
+#top-nav .nav-links a.cta {
+  background: var(--brass);
+  color: var(--hadley-d);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  border-bottom: 0;
+  font-weight: 600;
+}
+#top-nav .nav-links a.cta:hover {
+  background: var(--brass-d);
+  color: var(--hadley-d);
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+.hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--brass-d);
+  margin-bottom: 0.75rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.75rem;
+}
+.hero p.lede {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* School logos in the top nav, right of the brand. HES is a wide banner
+   with a baked-in navy background; Hopkins is a circular seal. The HES
+   navy is close to our nav navy so the rectangle nearly blends — a small
+   border-radius makes the edge feel intentional. The seal sits taller
+   visually because circles read smaller than rectangles of equal height. */
+.nav-schools {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-left: 1rem;
+  height: 100%;
+}
+.nav-schools .nav-logo {
+  width: auto;
+  display: block;
+}
+.nav-schools .logo-hes     { height: 36px; border-radius: 4px; }
+.nav-schools .logo-hopkins { height: 44px; }
+
+/* Nav gets crowded fast on small screens — hide the school logos there
+   so the brand + Concerts/Shop/Donate links keep their breathing room.
+   Logos return at ≥720px. */
+@media (max-width: 720px) {
+  .nav-schools { display: none; }
+}
+
+/* ── Filters ── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.25rem 0 0.5rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+.filters .label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.25rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.chip:hover {
+  border-color: var(--hadley);
+  color: var(--hadley);
+}
+.chip.active {
+  background: var(--hadley);
+  color: var(--white);
+  border-color: var(--hadley);
+}
+.filters .year-select {
+  margin-left: auto;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.results-meta {
+  padding: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ── Concert grid ── */
+.concert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0 4rem;
+}
+.concert-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  display: flex;
+  flex-direction: column;
+}
+.concert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--hadley);
+}
+.concert-card a.card-link {
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.concert-card .thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--hadley-d);
+  overflow: hidden;
+}
+.concert-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 240ms ease;
+}
+.concert-card:hover .thumb img { transform: scale(1.04); }
+.concert-card .thumb .duration {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: rgba(31, 41, 51, 0.85);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.concert-card .body {
+  padding: 1rem 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+.concert-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+.concert-card .meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+.concert-card .meta .dot { color: var(--border); }
+
+.ensemble-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.ensemble-badge.hes      { color: var(--hadley); }
+.ensemble-badge.hopkins  { color: var(--royal); }
+.ensemble-badge.district { color: var(--brass-d); }
+
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ── Concert detail page ── */
+.detail-wrap {
+  padding: 2rem 0 4rem;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--hadley);
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--brass-d); }
+
+.detail-header {
+  margin-bottom: 1.5rem;
+}
+.detail-header h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  margin-bottom: 0.5rem;
+}
+.detail-header .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.player-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+}
+.player-frame iframe,
+.player-frame .lite-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.lite-thumb {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: #000;
+  display: block;
+}
+.lite-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.95; }
+.lite-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.25) 75%);
+  pointer-events: none;
+}
+.lite-thumb .play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78px; height: 78px;
+  border-radius: 50%;
+  background: rgba(212, 161, 74, 0.95);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 160ms ease, background 160ms ease;
+}
+.lite-thumb:hover .play-btn {
+  background: var(--brass);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.lite-thumb .play-btn svg { width: 30px; height: 30px; fill: var(--hadley-d); margin-left: 4px; }
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.btn-primary {
+  background: var(--brass);
+  color: var(--hadley-d);
+}
+.btn-primary:hover { background: var(--brass-d); color: var(--hadley-d); }
+.btn-secondary {
+  background: var(--white);
+  color: var(--hadley);
+  border-color: var(--border);
+}
+.btn-secondary:hover { border-color: var(--hadley); }
+.btn[disabled], .btn.disabled {
+  background: var(--parchment-d);
+  color: var(--muted);
+  cursor: not-allowed;
+  border-color: var(--border);
+}
+.btn .pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--border);
+  color: var(--ink);
+}
+
+.detail-body {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.detail-body h2 {
+  font-size: 1.1rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.detail-body .desc-placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Coming soon ── */
+.coming-soon-wrap {
+  padding: 5rem 1rem;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.coming-soon-wrap h1 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin-bottom: 0.75rem;
+}
+.coming-soon-wrap p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--parchment-d);
+  padding: 2rem 0;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+footer .footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+footer h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--hadley-d);
+  margin-bottom: 0.5rem;
+}
+footer p, footer a { font-size: 0.88rem; }
+footer a { color: var(--hadley); text-decoration: underline; text-underline-offset: 3px; }
+footer a:hover { color: var(--brass-d); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  #top-nav .nav-inner { gap: 0.75rem; }
+  #top-nav .nav-links { gap: 0.75rem; }
+  #top-nav .nav-links a { font-size: 0.88rem; }
+  #top-nav .nav-links a.cta { padding: 0.4rem 0.7rem; }
+  .hero { padding: 2rem 0 1.5rem; }
+  .filters { flex-direction: column; align-items: stretch; }
+  .filters .year-select { margin-left: 0; }
+  .filters .chips-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  footer .footer-inner { grid-template-columns: 1fr; }
+}

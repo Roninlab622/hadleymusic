@@ -1,0 +1,16 @@
+# Cloudflare Pages — response headers
+# Tightening notes are in task_plan.md. Phase 1 keeps script/style 'unsafe-inline'
+# to support the small bits of inline JS/CSS already in the HTML; we can hash
+# them and drop unsafe-inline once the site stabilizes.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://i.ytimg.com https://i9.ytimg.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: interest-cohort=()
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/data/concerts.json
+  Cache-Control: public, max-age=300
