@@ -1,7 +1,7 @@
 // data.js — single source of truth for loading + formatting concert data.
 // Keeps fetch logic + display helpers in one place so pages stay thin.
 
-const DATA_URL = '/data/concerts.json';
+const DATA_URL = 'data/concerts.json';
 
 // Cache the in-flight fetch so home + concert pages share one network call
 // across navigations within the same session (browser cache helps too, but

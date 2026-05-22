@@ -30,7 +30,7 @@ function renderCards(list) {
     const card = document.createElement('article');
     card.className = 'concert-card';
     card.innerHTML = `
-      <a class="card-link" href="/concert.html?id=${encodeURIComponent(c.id)}">
+      <a class="card-link" href="concert.html?id=${encodeURIComponent(c.id)}">
         <div class="thumb">
           <img src="${thumbUrl(c.video_id, 'hq')}" alt="" loading="lazy" decoding="async">
           ${c.duration_seconds ? `<span class="duration">${formatDuration(c.duration_seconds)}</span>` : ''}

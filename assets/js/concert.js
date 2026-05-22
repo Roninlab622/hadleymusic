@@ -17,7 +17,7 @@ function renderNotFound() {
     <div class="empty-state" style="padding:4rem 1rem;">
       <h1 style="margin-bottom:.5rem;">Concert not found</h1>
       <p>That concert isn't in our archive yet.</p>
-      <p style="margin-top:1rem;"><a class="back-link" href="/">← Back to all concerts</a></p>
+      <p style="margin-top:1rem;"><a class="back-link" href="./">← Back to all concerts</a></p>
     </div>
   `;
 }
@@ -28,7 +28,7 @@ function render(concert) {
   document.title = `${pageTitle} | Hadley Music`;
 
   wrap.innerHTML = `
-    <a class="back-link" href="/">← All concerts</a>
+    <a class="back-link" href="./">← All concerts</a>
 
     <header class="detail-header">
       <span class="ensemble-badge ${concert.ensemble}">${ensembleLabel(concert.ensemble)}</span>
