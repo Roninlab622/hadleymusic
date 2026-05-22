@@ -4,6 +4,12 @@ _recon/
 # Claude Code machine-local settings (don't commit)
 .claude/
 
+# Local planning docs — kept on disk for persistent session state, not public.
+task_plan.md
+findings.md
+progress.md
+custom-prompt.md
+
 # OS / editor noise
 .DS_Store
 *.swp
