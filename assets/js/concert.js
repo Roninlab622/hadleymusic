@@ -45,10 +45,6 @@ function render(concert) {
       <a class="btn btn-secondary" href="https://www.youtube.com/watch?v=${encodeURIComponent(concert.video_id)}" target="_blank" rel="noopener">
         Watch on YouTube
       </a>
-      <button class="btn disabled" disabled aria-disabled="true" title="Downloads will come from the Hadley Media archive in a future phase.">
-        Download
-        <span class="pill">Coming soon</span>
-      </button>
     </div>
 
     <section class="detail-body">
